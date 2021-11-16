@@ -1,21 +1,31 @@
+const express = require("express");
+const app = express();
+const port = 3000;
+const db = require("./src/db/crudCategorias.js");
 
-var admin = require("firebase-admin");
+app.use(express.static("public"));
 
-var serviceAccount = require("./latiendavirtual-bd392-firebase-adminsdk.json");
-
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
+//Index app
+app.get("/", function(req, res){
+	res.send("Index del la tienda virtual");
 });
 
 
-db.collection("experts").doc("4LyZVH8l30ocWCxphEJN").get()
-.then((doc)=>{
-    if(doc.exists){
-        console.log(doc.data());
-    }else{
-        console.log("Documento no existe")
-    }
+
+//Categorías
+app.get("/categorias", function(req, res){
+    db.getCategorias(function(arrayCategorias){
+        res.send(arrayCategorias);
+    })
+});
+
+app.post('/categorias',(req, res)=>{
+    const categoria = req.body;
+    db.addCategoria(categoria, function(response){
+        res.send(response);
+    })
 })
-.catch((error)=>{
-    console.log("Error al leer documento ",error);
-})
+
+app.listen(port, () => {
+    console.log("My port " + port);
+});
