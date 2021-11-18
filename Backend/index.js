@@ -3,7 +3,8 @@ const app = express();
 const port = 3000;
 const db = require("./src/db/crudCategorias.js");
 
-app.use(express.static("public"));
+// app.use(express.static("public"));
+app.use(express.json());
 
 //Index app
 app.get("/", function(req, res){
