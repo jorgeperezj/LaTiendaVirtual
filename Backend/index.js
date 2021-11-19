@@ -20,9 +20,24 @@ app.get("/categorias", function(req, res){
     })
 });
 
+app.get('/categoria/:id', function(req, res){
+    const id = req.params.id;
+    db.getCategoria(id, function(categoria){
+        res.json(categoria);
+    })
+})
+
 app.post('/categorias',(req, res)=>{
     const categoria = req.body;
     db.addCategoria(categoria, function(response){
+        res.send(response);
+    })
+})
+
+app.patch('/update-categoria/:id', (req, res)=>{
+    const id = req.params.id;
+    const categoria = req.body;
+    db.updateCategoria(id, categoria, function(response){
         res.send(response);
     })
 })
