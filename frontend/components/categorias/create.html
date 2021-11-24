@@ -1,0 +1,23 @@
+{% extends 'template.html' %}
+{% block title %}Crear Categoría{% endblock %}
+
+{% block content %}
+	<div class="mt-5">
+		<h2>Crear categoría</h2>
+	</div>
+	<form method="POST">
+		{% csrf_token %}
+		<div class="form-group">
+		    <label for="message-text" class="col-form-label">
+		        {{forms.nombre.label}}:
+		    </label>
+		    {{forms.nombre}}
+		</div>
+
+		<div class="float-right">
+		    <a href="{% url 'indexCate' %}" type="button" class="btn btn-secondary">Cerrar</a>
+		    <button type="submit" class="btn btn-primary">Guardar</button>
+		</div>
+	</form>
+	
+{% endblock %}

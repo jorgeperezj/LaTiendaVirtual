@@ -1,0 +1,44 @@
+{% extends 'template.html' %}
+{% block title %}Categorías de productos{% endblock %}
+
+{% block content %}
+    <div class="mt-5">
+
+        <div class="row">
+            <div class="col-lg-6">
+                <h2>Categorías de productos</h2>
+            </div>
+            <div class="col-lg-6">
+                <a href="{% url 'createCate' %}" type="button" class="btn btn-success float-right">
+                    Agregar
+                </a>
+            </div>
+        </div>
+
+        <hr style="border: 1px #000 solid;" />
+
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for categoria in categorias %}
+                        <tr>
+                            <th scope="row">{{ categoria.id }}</th>
+                            <td>{{ categoria.nombre }}</td>
+                            <td>
+                                <a href="{% url 'editCate' categoria.id %}" type="button" class="btn btn-warning">Editar</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+{% endblock %}
