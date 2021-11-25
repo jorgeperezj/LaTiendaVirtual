@@ -3,6 +3,9 @@ const app = express();
 const port = 3000;
 const dbC = require("./src/db/crudCategorias.js");
 const dbP = require("./src/db/crudProductos.js");
+const dbE= require("./src/db/crudEntradas.js");
+const dbS= require("./src/db/crudSalidas.js");
+
 
 // app.use(express.static("public"));
 app.use(express.json());
@@ -75,3 +78,55 @@ app.patch('/productos/:id', (req, res)=>{
 app.listen(port, () => {
     console.log("My port " + port);
 });
+
+
+//  Entradas
+app.get('/entradas',function(req,res){
+    dbE.getEntradas(function(arrayEntradas){
+        res.send(arrayEntradas);
+    })
+});
+
+app.post('/entradas',(req, res)=>{
+    const entrada=req.body;
+    dbE.addEntradas(entrada, function(response){
+        res.send(response);
+    })
+})
+
+app.patch('/entradas/:id', (req,res)=>{
+    const id=req.params.id;
+    const entrada=req.body;
+    dbE.updateEntrada(id,entrada,function(response){
+        res.send(response);
+    })
+})
+
+//  Salidas
+app.get('/salidas',function(req,res){
+    dbS.getSalidas(function(arraySalidas){
+        res.send(arraySalidas);
+    })
+})
+
+app.post('/salidas',(req,res)=>{
+    const salida=req.body;
+    dbS.addSalidas(salida,function(response){
+        res.send(response);
+    })
+})
+
+app.patch('/salidas/:id',(req, res)=>{
+    const id=req.params.id;
+    const salida=req.body;
+    dbS.updateSalida(id,salida,function(response){
+        res.send(response);
+    })
+})
+
+
+
+
+
+
+

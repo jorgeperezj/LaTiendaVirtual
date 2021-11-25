@@ -11,7 +11,7 @@ function getCategorias(callback){
 			callback(arrayCategorias);
 		})
 		.catch(erro => {
-			callback(`Error para obtener Categorias ${err}`);
+			callback(`Error para obtener Categorias ${erro}`);
 		})
 }
 
