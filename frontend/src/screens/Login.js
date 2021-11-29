@@ -1,6 +1,5 @@
 import React from "react";
 import ButtonLogIn from "../components/ButtonLogIn";
-import imgBack from "../assets/images/backgroundLogin.jpg";
 import { Container } from "react-bootstrap";
 
 const Login = () => {

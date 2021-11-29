@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
-const port = 3000;
+const port = 5000;
+const cors = require("cors");
 const dbC = require("./src/db/crudCategorias.js");
 const dbP = require("./src/db/crudProductos.js");
 const dbE= require("./src/db/crudEntradas.js");
@@ -9,6 +10,7 @@ const dbS= require("./src/db/crudSalidas.js");
 
 // app.use(express.static("public"));
 app.use(express.json());
+app.use(cors());
 
 //Index app
 app.get("/", function(req, res){

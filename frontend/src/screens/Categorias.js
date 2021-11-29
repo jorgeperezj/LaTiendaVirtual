@@ -1,7 +1,12 @@
 import React from "react"
 import Divisor from "../components/Divisor";
+import { getCategorias } from "../apis/CategoriasCrud";
 import { Container, Row, Col, Table } from "react-bootstrap";
 import { Navigate } from "react-router-dom";
+
+getCategorias((res)=>{
+	console.log(res);
+});
 
 const Categorias = () => {
 	if (localStorage.getItem("data") == undefined) {
