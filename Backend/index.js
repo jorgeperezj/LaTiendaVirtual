@@ -15,7 +15,9 @@ app.get("/", function(req, res){
 	res.send("Index del la tienda virtual");
 });
 
-
+app.listen(port, () => {
+    console.log("My port " + port);
+});
 
 //Categorías
 app.get("/categorias", function(req, res){
@@ -74,10 +76,6 @@ app.patch('/productos/:id', (req, res)=>{
         res.send(response);
     })
 })
-
-app.listen(port, () => {
-    console.log("My port " + port);
-});
 
 
 //  Entradas
