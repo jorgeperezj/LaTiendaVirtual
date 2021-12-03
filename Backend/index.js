@@ -35,9 +35,10 @@ app.get('/categorias/:id', function(req, res){
     })
 })
 
-app.post('/categorias',(req, res)=>{
+app.post('/categorias/:id',(req, res)=>{
+    const id = req.params.id;
     const categoria = req.body;
-    dbC.addCategoria(categoria, function(response){
+    dbC.addCategoria(id, categoria, function(response){
         res.send(response);
     })
 })

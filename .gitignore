@@ -1,6 +1,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/firebase,react,windows,node,linux,macos
 # Edit at https://www.toptal.com/developers/gitignore?templates=firebase,react,windows,node,linux,macos
 
+### Llave Firebase
+backend/src/db/latiendavirtual-bd392-firebase-adminsdk.json
+
 ### Firebase ###
 .idea
 **/node_modules/*

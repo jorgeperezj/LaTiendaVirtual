@@ -6,13 +6,13 @@ import 'firebase/compat/auth';
 
 // Configure Firebase.
 const config = {
-	apiKey: "AIzaSyAOmua9rLn2lBRKEnpDybl3Fu_uLlwO14o",
-	authDomain: "latiendavirtual-bd392.firebaseapp.com",
-	projectId: "latiendavirtual-bd392",
-	storageBucket: "latiendavirtual-bd392.appspot.com",
-	messagingSenderId: "854915158771",
-	appId: "1:854915158771:web:166cf22bda3db3df83dd86"
-};
+	apiKey: "AIzaSyDHirO9gRgjxZFFslVwJ-KklvZ1k6D9_4Y",
+	authDomain: "latiendavirtual1-5f301.firebaseapp.com",
+	projectId: "latiendavirtual1-5f301",
+	storageBucket: "latiendavirtual1-5f301.appspot.com",
+	messagingSenderId: "212394161549",
+	appId: "1:212394161549:web:5b016bbaa591b8de9079c4"
+  };
 firebase.initializeApp(config);
 
 // Configure FirebaseUI.

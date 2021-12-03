@@ -27,10 +27,10 @@ function getCategoria(id, callback) {
 }
 
 //Agregar categoria
-function addCategoria(categoria, callback) {
-    return db.collection('Categorias').add(categoria)
+function addCategoria(id, categoria, callback) {
+    return db.collection('Categorias').doc(id).set(categoria)
         .then(() => {
-            callback("Categoria creada")
+            callback("Success")
         })
         .catch((err) => {
             callback(`Error al agregar categoria ${err}`);

@@ -1,14 +1,17 @@
-import React from "react"
+import React, { useState, useEffect } from "react";
 import Divisor from "../components/Divisor";
 import { getCategorias } from "../apis/CategoriasCrud";
-import { Container, Row, Col, Table } from "react-bootstrap";
+import CreateCategoria from "../components/categorias/CreateCategoria";
+import { Container, Row, Col, Table, Button } from "react-bootstrap";
 import { Navigate } from "react-router-dom";
 
-getCategorias((res)=>{
-	console.log(res);
-});
-
 const Categorias = () => {
+	const [results, setResults] = useState([]);
+	const id = results.length + 1;
+	useEffect(() => {
+		getCategorias(setResults);
+	}, []);
+
 	if (localStorage.getItem("data") == undefined) {
 		return <Navigate to="/" />
 	}
@@ -20,7 +23,7 @@ const Categorias = () => {
 						<h2>Categorías de productos</h2>
 					</Col>
 					<Col>
-						<button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#crearModal">Nueva categoría</button>
+						<CreateCategoria lastId={id}/>
 					</Col>
 				</Row>
 				<Divisor />
@@ -33,13 +36,17 @@ const Categorias = () => {
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<th scope="row">1</th>
-							<td>Dulces</td>
-							<td>
-								<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editarModal">Editar</button>
-							</td>
-						</tr>
+						{results.map((res, index) => (
+							<tr>
+								<th scope="row">{index + 1}</th>
+								<td>{res.Nombre}</td>
+								<td>
+									<Button variant="warning" >
+										Editar
+									</Button>
+								</td>
+							</tr>
+						))}
 					</tbody>
 				</Table>
 			</Container>
