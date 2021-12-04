@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Divisor from "../components/Divisor";
 import { getCategorias } from "../apis/CategoriasCrud";
 import CreateCategoria from "../components/categorias/CreateCategoria";
+import EditCategoria from "../components/categorias/EditCategoria";
 import { Container, Row, Col, Table, Button } from "react-bootstrap";
 import { Navigate } from "react-router-dom";
 
@@ -38,12 +39,10 @@ const Categorias = () => {
 					<tbody>
 						{results.map((res, index) => (
 							<tr>
-								<th scope="row">{index + 1}</th>
+								<th scope="row">{index+1}</th>
 								<td>{res.Nombre}</td>
 								<td>
-									<Button variant="warning" >
-										Editar
-									</Button>
+									<EditCategoria modifyId={{Nombre: res.Nombre, Id: index+1}}/>
 								</td>
 							</tr>
 						))}

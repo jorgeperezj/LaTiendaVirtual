@@ -41,7 +41,7 @@ function addCategoria(id, categoria, callback) {
 function updateCategoria(id, categoria, callback) {
     return db.collection('Categorias').doc(id).update(categoria)
         .then(() => {
-            callback("Categoria actualizada ");
+            callback("Success");
         })
         .catch((err) => {
             callback(`Error al actualizar categoria ${err}`);

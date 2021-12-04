@@ -4,7 +4,7 @@ import { addCategoria } from "../../apis/CategoriasCrud"
 
 const CreateCategoria = (props) => {
 	const { lastId } = props;
-	function Example() {
+	function Create() {
 		const [show, setShow] = useState(false);
 
 		const handleClose = () => setShow(false);
@@ -44,7 +44,7 @@ const CreateCategoria = (props) => {
 							<Button variant="secondary" onClick={handleClose}>
 								Cerrar
 							</Button>
-							<Button variant="primary" type="submit">
+							<Button variant="success" type="submit">
 								Guardar
 							</Button>
 						</Modal.Footer>
@@ -54,7 +54,7 @@ const CreateCategoria = (props) => {
 		);
 	}
 
-	return (<Example />);
+	return (<Create />);
 }
 
 export default CreateCategoria

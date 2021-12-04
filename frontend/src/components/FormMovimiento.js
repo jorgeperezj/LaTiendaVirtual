@@ -20,12 +20,6 @@ const FormMovimiento = () => {
                         <Form.Control type="datetime-local" />
                     </Col>
                 </Row><br />
-                <Row>
-                    <Col>
-                        <Form.Label for="date">Detalles:</Form.Label>
-                        <Form.Control as="textarea" rows={4} name="detalles" id="detalles"></Form.Control>
-                    </Col>
-                </Row><br />
                 <Row id="lista">
                     <Col>
                         <Form.Label for="date">Productos:</Form.Label>
@@ -54,6 +48,12 @@ const FormMovimiento = () => {
                     </Col>
                 </Row>
                 <div id="p"></div>
+                <Row>
+                    <Col>
+                        <Form.Label for="date">Detalles:</Form.Label>
+                        <Form.Control as="textarea" rows={4} name="detalles" id="detalles"></Form.Control>
+                    </Col>
+                </Row><br />
                 <Row>
                     <Col>
                         <button type="submit" class="btn btn-success mt-4 mb-3 btn-lg btn-block" data-toggle="modal" data-target="#crearModal">Guardar</button>

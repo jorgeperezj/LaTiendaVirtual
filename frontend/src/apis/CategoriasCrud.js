@@ -1,8 +1,8 @@
 import axios from "axios";
-var url = "http://localhost:5000";
+var url = "http://localhost:5000/categorias/";
 
 function getCategorias(callback) {
-    axios.get(url + "/categorias")
+    axios.get(url)
         .then((res) => {
             callback(res.data);
         })
@@ -12,7 +12,17 @@ function getCategorias(callback) {
 }
 
 function addCategoria(id, categoria, callback) {
-    axios.post(url + "/categorias/" + id, categoria)
+    axios.post(url + id, categoria)
+    .then((res) => {
+        callback(res.data);
+    })
+    .catch((err)=>{
+        callback(err);
+    })
+}
+
+function updateCategoria(id, categoria, callback) {
+    axios.patch(url + id, categoria)
     .then((res) => {
         callback(res.data);
     })
@@ -23,5 +33,6 @@ function addCategoria(id, categoria, callback) {
 
 export {
     getCategorias,
-    addCategoria
+    addCategoria,
+    updateCategoria
 }
