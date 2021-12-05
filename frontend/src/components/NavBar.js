@@ -5,7 +5,7 @@ const NavBar = () => {
     if (localStorage.getItem("data") != undefined) {
         return (
             <>
-                <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+                <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark sticky-top">
                     <Container>
                         <Navbar.Brand href="/">La tienda virtual</Navbar.Brand>
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />

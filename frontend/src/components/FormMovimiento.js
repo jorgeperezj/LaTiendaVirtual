@@ -7,6 +7,17 @@ const FormMovimiento = () => {
         var clon = c.cloneNode("lista");
         document.getElementById("p").appendChild(clon);
     }
+
+    function date() {
+        var hoy = new Date();
+        var day = hoy.getDate();
+        var formatDay = day >= 1 && day <=9 ? "0"+day : day;
+        var fecha = hoy.getFullYear() + '-' + ( hoy.getMonth() + 1 ) + '-' + formatDay;
+        var hora = hoy.getHours() + ':' + hoy.getMinutes();
+        var fechaYHora = fecha + 'T' + hora;
+        return fechaYHora;
+    }
+
     return (
         <>
             <Form>
@@ -17,34 +28,36 @@ const FormMovimiento = () => {
                     </Col>
                     <Col md="3">
                         <Form.Label for="date">Fecha:</Form.Label>
-                        <Form.Control type="datetime-local" />
+                        <Form.Control type="datetime-local" id="date" defaultValue={date()} />
                     </Col>
-                </Row><br />
-                <Row id="lista">
-                    <Col>
-                        <Form.Label for="date">Productos:</Form.Label>
-                        <Form.Control type="text" name="producto" id="producto" />
-                    </Col>
-                    <Col>
-                        <Form.Label for="date">Cantidad:</Form.Label>
-                        <Form.Control type="number" name="cantidad" id="cantidad" />
-                    </Col>
-                    <Col>
-                        <Form.Label for="date">Valor unitario:</Form.Label>
-                        <Form.Control type="number" name="cantidad" id="cantidad" />
-                    </Col>
-                    <Col>
-                        <Form.Label for="date">Total:</Form.Label>
-                        <Form.Control type="number" name="total" id="total" disabled />
-                    </Col>
+                </Row>
+                <Row className="justify-content-end">
                     <Col md="1" sm="1">
                         <br />
-                        <button onClick={() => {clonar()}} type="button" class="btn btn-success mt-2">
+                        <button onClick={() => {clonar()}} type="button" class="btn btn-success float-right mt-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
                                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                                 <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
                             </svg>
                         </button>
+                    </Col>
+                </Row>
+                <Row id="lista">
+                    <Col>
+                        <Form.Label for="producto">Productos:</Form.Label>
+                        <Form.Control type="text" name="producto" id="producto" />
+                    </Col>
+                    <Col>
+                        <Form.Label for="cantidad">Cantidad:</Form.Label>
+                        <Form.Control type="number" name="cantidad" id="cantidad" />
+                    </Col>
+                    <Col>
+                        <Form.Label for="valor">Valor unitario:</Form.Label>
+                        <Form.Control type="number" name="valor" id="cantidad" />
+                    </Col>
+                    <Col>
+                        <Form.Label for="total">Total:</Form.Label>
+                        <Form.Control type="number" name="total" id="total" disabled />
                     </Col>
                 </Row>
                 <div id="p"></div>
