@@ -1,5 +1,5 @@
 import axios from "axios";
-var url = "http://localhost:5000/categorias/";
+var url = "https://latiendavirtual.herokuapp.com/categorias/";
 
 function getCategorias(callback) {
     axios.get(url)

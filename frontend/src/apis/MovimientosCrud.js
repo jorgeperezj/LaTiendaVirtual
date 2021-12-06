@@ -1,5 +1,5 @@
 import axios from "axios";
-var url = "http://localhost:5000/movimientos/";
+var url = "https://latiendavirtual.herokuapp.com/movimientos/";
 
 function getMovimientos(callback) {
     axios.get(url)

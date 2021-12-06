@@ -1,6 +1,6 @@
 import axios from "axios";
 
-var url = "http://localhost:5000/productos/";
+var url = "https://latiendavirtual.herokuapp.com/productos";
 
 
 function getProductos(callback) {
@@ -14,7 +14,7 @@ function getProductos(callback) {
 }
 
 function searchProductos(callback) {
-    axios.get("http://localhost:5000/searchProductos/")
+    axios.get("https://latiendavirtual.herokuapp.com/searchProductos/")
         .then((res) => {
             callback(res.data);
         })
