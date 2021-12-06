@@ -27,10 +27,10 @@ function getProducto(id, callback) {
 }
 
 //Agregar Producto
-function addProducto(Producto, callback) {
-    return db.collection('Productos').add(Producto)
+function addProducto(id, producto, callback) {
+    return db.collection('Productos').doc(id).set(producto)
         .then(() => {
-            callback("Producto creada")
+            callback("Success")
         })
         .catch((err) => {
             callback(`Error al agregar Producto ${err}`);
@@ -38,8 +38,8 @@ function addProducto(Producto, callback) {
 }
 
 //Actualizar Producto
-function updateProducto(id, Producto, callback) {
-    return db.collection('Productos').doc(id).update(Producto)
+function updateProducto(id, producto, callback) {
+    return db.collection('Productos').doc(id).update(producto)
         .then(() => {
             callback("Producto actualizada ");
         })

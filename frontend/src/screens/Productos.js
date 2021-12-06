@@ -1,12 +1,41 @@
-import React from 'react'
+//import React from 'react'
 import Divisor from "../components/Divisor";
 import { Navigate } from "react-router-dom"
 import { Container, Row, Col, Table } from "react-bootstrap";
+import { getProductos } from '../apis/ProductosCrud';
+import React, { useState, useEffect } from "react";
+import CreateCategoria from "../components/categorias/CreateCategoria";//   uso de ejemplo
+import CreateProducto from "../components/productos/CreateProducto";
+import EditProducto from "../components/productos/EditProducto";
+
+var style, valorEstado;
+
+function estado(estad){
+    if(estad){ 
+        style="text-success";
+        valorEstado="Activo";
+    }else{
+        style="text-danger";
+        valorEstado="Inactivo";
+    }
+
+}
 
 const Productos = () => {
+
+    const [results, setResults]= useState([])
+    const id =results.length + 1;
+    useEffect(()=>{
+        getProductos(setResults);
+    }, []);
+
+    console.log(results);
+
     if (localStorage.getItem("data") == undefined) {
 		return <Navigate to="/" />
 	}
+
+    
     return (
         <>
             <Container className="mt-5">
@@ -15,7 +44,8 @@ const Productos = () => {
                         <h2>Listado de Productos</h2>
                     </Col>
                     <Col>
-                        <button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#crearModal">Nuevo Producto</button>
+                        <CreateProducto lastId={id}/>
+                        {/* <button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#crearModal">Nuevo Producto</button> */}
                     </Col>
                 </Row>
                 <Divisor />
@@ -31,7 +61,23 @@ const Productos = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        {results.map((res,index)=>(
+                            <tr>
+                                <th scope="row">{index + 1}</th>
+                                <td>{res.nombre_pro}</td>
+                                {estado(res.estado_pro)}
+                                <td class={style}><strong>{valorEstado}</strong></td>
+                                <td>{res.categoria_id}</td>
+                                <td>{res.cantidad_pro}</td>
+                                <td>
+                                    <EditProducto modifyId={{nombre_pro:res.nombre_pro, estado_pro: res.estado_pro, id:index+1}}/>
+                                {/* <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editarModal">Editar</button> */}
+                                </td>
+                            </tr>
+                        ))
+
+                        //     <--  lo que agregué           lo que había -->
+                        /* <tr>
                             <th scope="row">1</th>
                             <td>Chocolatina</td>
                             <td class="text-success"><strong>Activo</strong></td>
@@ -40,12 +86,16 @@ const Productos = () => {
                             <td>
                                 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editarModal">Editar</button>
                             </td>
-                        </tr>
+                        </tr> */}
                     </tbody>
                 </Table>
             </Container>
         </>
+        
     )
+    
 }
+
+
 
 export default Productos
