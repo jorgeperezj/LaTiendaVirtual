@@ -29,8 +29,6 @@ const Productos = () => {
         getProductos(setResults);
     }, []);
 
-    console.log(results);
-
     if (localStorage.getItem("data") == undefined) {
 		return <Navigate to="/" />
 	}
@@ -45,7 +43,6 @@ const Productos = () => {
                     </Col>
                     <Col>
                         <CreateProducto lastId={id}/>
-                        {/* <button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#crearModal">Nuevo Producto</button> */}
                     </Col>
                 </Row>
                 <Divisor />
@@ -64,14 +61,13 @@ const Productos = () => {
                         {results.map((res,index)=>(
                             <tr>
                                 <th scope="row">{index + 1}</th>
-                                <td>{res.nombre_pro}</td>
-                                {estado(res.estado_pro)}
+                                <td>{res.Nombre}</td>
+                                {estado(res.Estado)}
                                 <td class={style}><strong>{valorEstado}</strong></td>
-                                <td>{res.categoria_id}</td>
-                                <td>{res.cantidad_pro}</td>
+                                <td>{res.Categoria}</td>
+                                <td>{res.Cantidad}</td>
                                 <td>
-                                    <EditProducto modifyId={{nombre_pro:res.nombre_pro, estado_pro: res.estado_pro, id:index+1}}/>
-                                {/* <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editarModal">Editar</button> */}
+                                    <EditProducto modifyId={{Nombre:res.Nombre, Estado: res.Estado, Id: index+1}}/>
                                 </td>
                             </tr>
                         ))

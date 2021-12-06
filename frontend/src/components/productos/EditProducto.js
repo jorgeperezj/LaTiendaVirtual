@@ -4,8 +4,9 @@ import { updateProducto } from "../../apis/ProductosCrud"
 
 const EditProducto= (props)=>{
     const modifyId = props.modifyId.Id;
-    const estadoProducto = props.modifyId.estado_pro;
-    const nameProducto= props.modifyId.nombre_pro;
+    const estadoProducto = props.modifyId.Estado;
+    const nameProducto= props.modifyId.Nombre;
+    estadoProducto.toString();
 
     function Edit(){
         const [showEdit, setShow] = useState(false);
@@ -15,8 +16,11 @@ const EditProducto= (props)=>{
 
         function save(even){
             even.preventDefault();
+            var estado = even.target[1].value;
+            estado = estado == "true" ? true : false;
             const obj = {
-                estado_pro: even.target[0].value
+                Nombre: even.target[0].value,
+                Estado: estado
             }
             updateProducto(modifyId, obj, (res)=>{
                 if(res == "Success"){
@@ -42,12 +46,10 @@ const EditProducto= (props)=>{
                                 <Form.Label>Nombre del Producto:</Form.Label>
                                 <Form.Control type="text" controlId="nameProducto" defaultValue={nameProducto} required></Form.Control>
                                 <Form.Label>Estado:</Form.Label>
-                                <Form.Select aria-label="Categorias" className="form-control" value={estadoProducto.toString()}>
-                                    <option value="false">Inactivo</option>
+                                <Form.Select aria-label="Categorias" className="form-control" defaultValue={estadoProducto}>
                                     <option value="true">Activo</option>
-
+                                    <option value="false">Inactivo</option>
                                 </Form.Select>
-                                {/* <Form.Control type="text" controlId="estadoProducto" defaultValue={estadoProducto} required></Form.Control> */}
                                 <Form.Control type="hidden" controlId="id" defaultValue={modifyId} required></Form.Control>
                             </Form.Group>
                         </Modal.Body>

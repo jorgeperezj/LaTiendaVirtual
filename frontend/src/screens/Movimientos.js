@@ -1,12 +1,20 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
 import Divisor from "../components/Divisor";
 import { Navigate } from "react-router-dom";
 import { Container, Row, Col, Table } from "react-bootstrap";
+import { getMovimientos } from "../apis/MovimientosCrud";
 
 const Movimientos = () => {
+    const [results, setResults] = useState([]);
+
+    useEffect(() => {
+        getMovimientos(setResults);
+    }, []);
+    
     if (localStorage.getItem("data") == undefined) {
-		return <Navigate to="/" />
-	}
+        return <Navigate to="/" />
+    }
+
     return (
         <>
             <Container className="mt-5">
@@ -29,42 +37,17 @@ const Movimientos = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Dulces</td>
-                            <td>10</td>
-                            <td>$5000</td>
-                            <td>$50000</td>
-                            <td style={{ color: "green" }}><strong>Entrada</strong></td>
-                            <td>23/11/2021</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Helado</td>
-                            <td>10</td>
-                            <td>$4500</td>
-                            <td>$45000</td>
-                            <td style={{ color: "green" }}><strong>Entrada</strong></td>
-                            <td>23/11/2021</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Dulces</td>
-                            <td>10</td>
-                            <td>$8000</td>
-                            <td>$80000</td>
-                            <td style={{ color: "red" }}><strong>Salida</strong></td>
-                            <td>23/11/2021</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">4</th>
-                            <td>Helados</td>
-                            <td>10</td>
-                            <td>$8000</td>
-                            <td>$80000</td>
-                            <td style={{ color: "red" }}><strong>Salida</strong></td>
-                            <td>23/11/2021</td>
-                        </tr>
+                        {results.map((res, index) => (
+                            <tr>
+                                <th scope="row">{index + 1}</th>
+                                <td>{res.Producto}</td>
+                                <td>{res.Cantidad}</td>
+                                <td>${res.Valor}</td>
+                                <td>${res.Cantidad * res.Valor}</td>
+                                <td style={{ color: "green" }}><strong>Entrada</strong></td>
+                                <td>{res.Fecha}</td>
+                            </tr>
+                        ))}
                     </tbody>
                 </Table>
             </Container>

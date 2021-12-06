@@ -21,7 +21,6 @@ const Entradas = () => {
             </Container>
         </>
     )
-    
 }
 
 export default Entradas

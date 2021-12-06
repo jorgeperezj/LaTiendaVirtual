@@ -1,9 +1,7 @@
-
 import React, { useState, useEffect } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
 import { addProducto } from "../../apis/ProductosCrud";
 import { getCategorias } from "../../apis/CategoriasCrud";
-// import Map from "react-bootstrap"
 
 
 const CreateProducto = (props) => {
@@ -23,9 +21,9 @@ const CreateProducto = (props) => {
             even.preventDefault();
             const obj = {
             Nombre: even.target[0].value,
-            // Categoria: even.target[1].value,
-            // Cantidad: 0,
-            // Estado: true
+            Categoria: even.target[1].value,
+            Cantidad: 0,
+            Estado: true
             }
             addProducto(lastId, obj, (res) => {
                 if (res == "Success") {

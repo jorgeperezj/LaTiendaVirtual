@@ -4,8 +4,8 @@ const port = 5000;
 const cors = require("cors");
 const dbC = require("./src/db/crudCategorias.js");
 const dbP = require("./src/db/crudProductos.js");
-const dbE = require("./src/db/crudEntradas.js");
-const dbS = require("./src/db/crudSalidas.js");
+const dbE = require("./src/db/crudMovimiento.js");
+// const dbS = require("./src/db/crudSalidas.js");
 
 
 // app.use(express.static("public"));
@@ -65,6 +65,12 @@ app.get('/productos/:id', function (req, res) {
     })
 })
 
+app.get('/searchProductos/', function (req, res) {
+    dbP.searchProductos(function (arraySProductos) {
+        res.send(arraySProductos);
+    })
+})
+
 app.post('/productos/:id', (req, res) => {
     const id = req.params.id;
     const producto = req.body;
@@ -82,49 +88,49 @@ app.patch('/productos/:id', (req, res) => {
 })
 
 
-//  Entradas
-app.get('/entradas', function (req, res) {
-    dbE.getEntradas(function (arrayEntradas) {
-        res.send(arrayEntradas);
+//  Movimientos
+app.get('/movimientos', function (req, res) {
+    dbE.getMovimientos(function (arrayMovimientos) {
+        res.send(arrayMovimientos);
     })
 });
 
-app.post('/entradas', (req, res) => {
-    const entrada = req.body;
-    dbE.addEntradas(entrada, function (response) {
+app.post('/movimientos', (req, res) => {
+    const movimiento = req.body;
+    dbE.addMovimiento(movimiento, function (response) {
         res.send(response);
     })
 })
 
-app.patch('/entradas/:id', (req, res) => {
-    const id = req.params.id;
-    const entrada = req.body;
-    dbE.updateEntrada(id, entrada, function (response) {
-        res.send(response);
-    })
-})
+// app.patch('/entradas/:id', (req, res) => {
+//     const id = req.params.id;
+//     const entrada = req.body;
+//     dbE.updateEntrada(id, entrada, function (response) {
+//         res.send(response);
+//     })
+// })
 
 //  Salidas
-app.get('/salidas', function (req, res) {
-    dbS.getSalidas(function (arraySalidas) {
-        res.send(arraySalidas);
-    })
-})
+// app.get('/salidas', function (req, res) {
+//     dbS.getSalidas(function (arraySalidas) {
+//         res.send(arraySalidas);
+//     })
+// })
 
-app.post('/salidas', (req, res) => {
-    const salida = req.body;
-    dbS.addSalidas(salida, function (response) {
-        res.send(response);
-    })
-})
+// app.post('/salidas', (req, res) => {
+//     const salida = req.body;
+//     dbS.addSalidas(salida, function (response) {
+//         res.send(response);
+//     })
+// })
 
-app.patch('/salidas/:id', (req, res) => {
-    const id = req.params.id;
-    const salida = req.body;
-    dbS.updateSalida(id, salida, function (response) {
-        res.send(response);
-    })
-})
+// app.patch('/salidas/:id', (req, res) => {
+//     const id = req.params.id;
+//     const salida = req.body;
+//     dbS.updateSalida(id, salida, function (response) {
+//         res.send(response);
+//     })
+// })
 
 
 

@@ -14,11 +14,12 @@ const Inicio = () => {
 				<h3>Grupo B13, Subgrupo 5 - La tienda virtual 🛒📦💰</h3>
 				<br />
 				<p>Desarrollado  por los tripulantes: 👨‍💻</p>
-				{/* <ul>
+				<ul>
 					<li>Paula Andrea Valencia O. 👩‍🚀</li>
 					<li>Edwin Fernando Ortega D. 👨‍🚀</li>
 					<li>Jorge Andrés Pérez J. 👨‍🚀</li>
-				</ul> */}
+					<li>Henry Alexander Norza B. 👨‍🚀</li>
+				</ul>
 				<br />
 				<h5>Gracias. 👍😎</h5>
 			</Container>

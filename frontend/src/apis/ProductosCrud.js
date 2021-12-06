@@ -1,10 +1,20 @@
 import axios from "axios";
 
-var url = "http://localhost:5000";
+var url = "http://localhost:5000/productos/";
 
 
 function getProductos(callback) {
-    axios.get(url + "/productos/")
+    axios.get(url)
+        .then((res) => {
+            callback(res.data);
+        })
+        .catch((err) => {
+            callback(err);
+        })
+}
+
+function searchProductos(callback) {
+    axios.get("http://localhost:5000/searchProductos/")
         .then((res) => {
             callback(res.data);
         })
@@ -14,7 +24,7 @@ function getProductos(callback) {
 }
 
 function addProducto(id, producto, callback) {
-    axios.post(url + "/productos/" + id, producto)
+    axios.post(url + id, producto)
     .then((res) => {
         callback(res.data);
     })
@@ -23,8 +33,8 @@ function addProducto(id, producto, callback) {
     })
 }
 
-function updateProducto(id, estado, callback) {
-    axios.patch(url + id, estado)
+function updateProducto(id, producto, callback) {
+    axios.patch(url + id, producto)
         .then((res) => {
             callback(res.data);
         })
@@ -36,7 +46,8 @@ function updateProducto(id, estado, callback) {
 export {
     getProductos,
     addProducto,
-    updateProducto
+    updateProducto,
+    searchProductos
 }
 
 

@@ -15,6 +15,20 @@ function getProductos(callback){
 		})
 }
 
+function searchProductos(callback){
+	return db.collection("Productos").where("Estado", "==", true).get()
+		.then((response) => {
+			var arraySProductos = [];
+			response.forEach((doc) =>{
+				arraySProductos.push(doc.data());
+			})
+			callback(arraySProductos);
+		})
+		.catch(erro => {
+			callback(`Error para obtener Productos ${err}`);
+		})
+}
+
 //Mostrar Producto
 function getProducto(id, callback) {
     return db.collection('Productos').doc(id).get()
@@ -41,7 +55,7 @@ function addProducto(id, producto, callback) {
 function updateProducto(id, producto, callback) {
     return db.collection('Productos').doc(id).update(producto)
         .then(() => {
-            callback("Producto actualizada ");
+            callback("Success");
         })
         .catch((err) => {
             callback(`Error al actualizar Producto ${err}`);
@@ -52,5 +66,6 @@ module.exports = {
 	getProductos,
 	addProducto,
 	updateProducto,
-	getProducto
+	getProducto,
+    searchProductos
 }
