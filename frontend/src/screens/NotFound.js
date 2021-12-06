@@ -16,7 +16,7 @@ const NotFound = () => {
 						Cómo llegaste aquí es un misterio. 🤔<br />
 						Pero puedes hacer clic en el botón de abajo 👇 para volver a la página de inicio.
 						</p>
-						<Button variant="outline-dark" size="lg" onClick={() => { window.location.href="http://localhost:3000/inicio"; }}>INICIO</Button>
+						<a href="/inicio" className="outline-dark" size="lg">INICIO</a>
 					</Col>
 				</Row>
 			</Container>
